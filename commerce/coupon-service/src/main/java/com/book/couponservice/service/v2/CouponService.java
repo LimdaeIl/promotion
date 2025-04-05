@@ -1,7 +1,7 @@
 package com.book.couponservice.service.v2;
 
 import com.book.couponservice.domain.Coupon;
-import com.book.couponservice.dto.v1.CouponDto;
+import com.book.couponservice.dto.v2.CouponDto;
 import com.book.couponservice.exception.CouponNotFoundException;
 import com.book.couponservice.repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,37 +17,37 @@ public class CouponService {
   private final CouponStateService couponStateService;
 
   @Transactional
-  public CouponDto.Response issueCoupon(CouponDto.IssueRequest request) {
+  public CouponDto.CouponResponse issueCoupon(CouponDto.CouponIssueRequest request) {
     Coupon coupon = couponRedisService.issueCoupon(request);
     couponStateService.updateCouponState(couponRepository.findById(coupon.getId())
         .orElseThrow(() -> new CouponNotFoundException("쿠폰을 찾을 수 없습니다.")));
-    return CouponDto.Response.from(coupon);
+    return CouponDto.CouponResponse.from(coupon);
   }
 
   @Transactional
-  public CouponDto.Response useCoupon(Long couponId, Long orderId) {
+  public CouponDto.CouponResponse useCoupon(Long couponId, Long orderId) {
     Coupon coupon = couponRepository.findByIdWithLock(couponId)
         .orElseThrow(() -> new CouponNotFoundException("쿠폰을 찾을 수 없습니다."));
 
     coupon.use(orderId);
     couponStateService.updateCouponState(coupon);
 
-    return CouponDto.Response.from(coupon);
+    return CouponDto.CouponResponse.from(coupon);
   }
 
   @Transactional
-  public CouponDto.Response cancelCoupon(Long couponId) {
+  public CouponDto.CouponResponse cancelCoupon(Long couponId) {
     Coupon coupon = couponRepository.findByIdWithLock(couponId)
         .orElseThrow(() -> new CouponNotFoundException("쿠폰을 찾을 수 없습니다."));
 
     coupon.cancel();
     couponStateService.updateCouponState(coupon);
 
-    return CouponDto.Response.from(coupon);
+    return CouponDto.CouponResponse.from(coupon);
   }
 
-  public CouponDto.Response getCoupon(Long couponId) {
-    CouponDto.Response cachedCoupon = couponStateService.getCouponState(couponId);
+  public CouponDto.CouponResponse getCoupon(Long couponId) {
+    CouponDto.CouponResponse cachedCoupon = couponStateService.getCouponState(couponId);
     if (cachedCoupon != null) {
       return cachedCoupon;
     }
@@ -55,7 +55,7 @@ public class CouponService {
     Coupon coupon = couponRepository.findById(couponId)
         .orElseThrow(() -> new CouponNotFoundException("쿠폰을 찾을 수 없습니다."));
 
-    CouponDto.Response response = CouponDto.Response.from(coupon);
+    CouponDto.CouponResponse response = CouponDto.CouponResponse.from(coupon);
     couponStateService.updateCouponState(coupon);
 
     return response;

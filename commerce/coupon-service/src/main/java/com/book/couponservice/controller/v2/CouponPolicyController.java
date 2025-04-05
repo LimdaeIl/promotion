@@ -1,6 +1,6 @@
 package com.book.couponservice.controller.v2;
 
-import com.book.couponservice.dto.v1.CouponPolicyDto;
+import com.book.couponservice.dto.v2.CouponPolicyDto;
 import com.book.couponservice.service.v2.CouponPolicyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
