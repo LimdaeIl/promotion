@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/commerce.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/commerce.api-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coupon-service/commerce.coupon-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/coupon-service/commerce.coupon-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/discovery-service/commerce.discovery-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/discovery-service/commerce.discovery-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service/commerce.user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service/commerce.user-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/promotion.iml" filepath="$PROJECT_DIR$/.idea/promotion.iml" />
+    </modules>
+  </component>
+</project>

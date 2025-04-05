@@ -1,0 +1,6 @@
+rootProject.name = 'commerce'
+
+include 'discovery-service'
+include 'user-service'
+include 'api-gateway'
+include 'coupon-service'
