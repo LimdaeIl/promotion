@@ -1,5 +1,6 @@
 package com.book.couponservice.controller.v2;
 
+
 import com.book.couponservice.dto.v2.CouponPolicyDto;
 import com.book.couponservice.service.v2.CouponPolicyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +23,8 @@ public class CouponPolicyController {
   private final CouponPolicyService couponPolicyService;
 
   @PostMapping
-  public ResponseEntity<CouponPolicyDto.Response> createCouponPolicy(@RequestBody CouponPolicyDto.CreateRequest request) throws JsonProcessingException {
+  public ResponseEntity<CouponPolicyDto.Response> createCouponPolicy(@RequestBody CouponPolicyDto.CreateRequest request)
+      throws JsonProcessingException {
     return ResponseEntity.ok()
         .body(CouponPolicyDto.Response.from(couponPolicyService.createCouponPolicy(request)));
   }
